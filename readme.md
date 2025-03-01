@@ -97,13 +97,13 @@ Example JSON structure:
 
 This project is open-source under the MIT License.
 
-### 🌟 Future Plans
+## 🌟 Future Plans
 
 - 🔄 Multi-platform support (Facebook Marketplace, Gumtree, DoneDeal).
 - 📊 Web dashboard for viewing listings.
 - 🔔 Notification system for new ads.
 
-### 🤝 Contributing
+## 🤝 Contributing
 
 PRs and suggestions are welcome! Feel free to fork and submit a pull request. 🚀
 
