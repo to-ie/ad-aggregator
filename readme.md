@@ -8,8 +8,6 @@ This tool allows users to:
 - Store data in a structured format (JSON).
 - Automate scraping with cron jobs.
 
----
-
 ## 🚀 Features
 
 ✅ Adverts.ie Scraper – Extracts key details from listings, including:
@@ -23,8 +21,6 @@ This tool allows users to:
 ✅ Data Storage – Saves results in a structured JSON file.
 ✅ Automation – Set up scheduled daily scrapes using cron jobs.
 ✅ Future Expansion – Planned support for Facebook Marketplace, Gumtree, and DoneDeal.
-
----
 
 ## 🛠 Installation & Setup
 
@@ -68,8 +64,6 @@ Then add:
 ```
 Replace /path/to/your/scraper.py with the actual path to the script.
 
----
-
 ## 📁 Data Storage
 
 - Scraped ads are saved in results/adverts.json.
@@ -88,8 +82,6 @@ Example JSON structure:
 ]
 ```
 
----
-
 ## 🔧 Troubleshooting
 
 - Issue: selenium.common.exceptions.WebDriverException
@@ -100,22 +92,16 @@ Example JSON structure:
 - Issue: Scraper not running in cron job
     - Solution: Use absolute paths for Python and script files in your cron job.
 
----
-
 
 ## 📜 License
 
 This project is open-source under the MIT License.
-
----
 
 ### 🌟 Future Plans
 
 - 🔄 Multi-platform support (Facebook Marketplace, Gumtree, DoneDeal).
 - 📊 Web dashboard for viewing listings.
 - 🔔 Notification system for new ads.
-
----
 
 ### 🤝 Contributing
 
