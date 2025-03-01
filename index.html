@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filtered Adverts List</title>
+    <title>AdGator: Adverts in Ireland</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             max-width: 600px;
             margin: 20px auto;
             padding: 10px;
+        }
+        .logo img{
+            width: 180px;
+        }
+        .logo{
+            text-align: center;
         }
         .filter-box {
             display: flex;
@@ -92,13 +98,16 @@
     </style>
 </head>
 <body>
+    <div class="logo">
+        <img src="logo.png">
+    </div>
 
     <h2 style="text-align: center;">Latest Adverts</h2>
 
     <!-- Filter Inputs -->
     <div class="filter-box">
-        <input type="text" id="titleFilter" placeholder="Filter by title..." oninput="filterAds()">
-        <input type="text" id="locationFilter" placeholder="Filter by location..." oninput="filterAds()">
+        <input type="text" id="titleFilter" placeholder="Search by title..." oninput="filterAds()">
+        <input type="text" id="locationFilter" placeholder="Search by location..." oninput="filterAds()">
     </div>
 
     <!-- Adverts List -->
