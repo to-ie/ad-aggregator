@@ -71,9 +71,9 @@ def fetch_ads(base_url):
 
     ads = []
 
-    # for page in range(1, total_pages + 1):          
+    for page in range(1, total_pages + 1):          
     # testing at small scale
-    for page in range(1, 6):                      
+    # for page in range(1, 6):                      
         url = f"{base_url}page-{page}"
         print(f"Fetching: {url}")
 
