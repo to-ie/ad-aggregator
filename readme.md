@@ -18,11 +18,9 @@ This tool allows users to:
 - 💰 Price
 - 🔗 Ad Link
 
-✅ Data Storage – Saves results in a structured JSON file.
-
-✅ Automation – Set up scheduled daily scrapes using cron jobs.
-
-✅ Future Expansion – Planned support for Facebook Marketplace, Gumtree, and DoneDeal.
+✅ Data Storage – Saves results in a structured JSON file. <br>
+✅ Automation – Set up scheduled daily scrapes using cron jobs. <br>
+✅ Future Expansion – Planned support for Facebook Marketplace, Gumtree, and DoneDeal. <br>
 
 ## 🛠 Installation & Setup
 
