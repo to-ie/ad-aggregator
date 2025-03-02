@@ -1,6 +1,6 @@
 # 🛒 Ad Aggregator
 
-**Ad Aggregator** is a marketplace listing aggregator for Ireland, designed to scrape and track advertisements from multiple platforms. Currently, it supports **Adverts.ie**, with future plans to include **Facebook Marketplace**, **Gumtree**, and **DoneDeal**.
+**Ad Aggregator** is a marketplace listing aggregator for Ireland, designed to scrape and track advertisements from multiple platforms. Currently, it supports **Adverts.ie**, with future plans to include **Facebook Marketplace**, **Ebay**, and **DoneDeal**.
 
 This tool allows users to:
 - Collect daily snapshots of listings.

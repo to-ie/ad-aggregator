@@ -108,7 +108,7 @@ def save_ads(filename, ads):
     """Save scraped ads to a JSON file."""
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, 'w', encoding='utf-8') as file:
-        json.dump(ads, file, indent=4, ensure_ascii=False)
+        json.dump(ads, file, indent=4                                                                                                                                                                                                                                                                                                           , ensure_ascii=False)
 
 def main():
     base_url = 'https://www.adverts.ie/for-sale/'  # Base URL to scrape
