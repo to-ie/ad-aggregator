@@ -11,10 +11,10 @@
             margin: 20px auto;
             padding: 10px;
         }
-        .logo img{
+        .logo img {
             width: 180px;
         }
-        .logo{
+        .logo {
             text-align: center;
         }
         .filter-box {
@@ -36,7 +36,7 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            display: none; /* Initially hidden */
+            display: none;
         }
         .ad-item {
             display: flex;
@@ -106,8 +106,8 @@
 
     <!-- Filter Inputs -->
     <div class="filter-box">
-        <input type="text" id="titleFilter" placeholder="Search by title..." oninput="filterAds()">
-        <input type="text" id="locationFilter" placeholder="Search by location..." oninput="filterAds()">
+        <input type="text" id="titleFilter" placeholder="Search by title..." oninput="debouncedFilterAds()">
+        <input type="text" id="locationFilter" placeholder="Search by location..." oninput="debouncedFilterAds()">
     </div>
 
     <!-- Adverts List -->
@@ -116,13 +116,22 @@
 
     <script>
         let advertsData = [];
+        let debounceTimer;
 
+        // Load adverts and cache them in LocalStorage
         async function loadAdverts() {
-            try {
-                const response = await fetch('results/adverts.json');
-                advertsData = await response.json();
-            } catch (error) {
-                console.error("Error loading adverts:", error);
+            const cachedData = localStorage.getItem("advertsData");
+
+            if (cachedData) {
+                advertsData = JSON.parse(cachedData);
+            } else {
+                try {
+                    const response = await fetch('results/adverts.json');
+                    advertsData = await response.json();
+                    localStorage.setItem("advertsData", JSON.stringify(advertsData));
+                } catch (error) {
+                    console.error("Error loading adverts:", error);
+                }
             }
         }
 
@@ -139,13 +148,14 @@
             }
 
             noResultsMessage.style.display = "none";
-            listContainer.style.display = "block"; // Show list only when there are matching results
+            listContainer.style.display = "block";
+
+            const fragment = document.createDocumentFragment();
 
             adverts.forEach(ad => {
                 const listItem = document.createElement("li");
                 listItem.classList.add("ad-item");
 
-                // Make the whole row clickable except the "View" button
                 listItem.onclick = (event) => {
                     if (!event.target.classList.contains("view-button")) {
                         window.open(ad.link, "_blank");
@@ -162,8 +172,10 @@
                     <button class="view-button" onclick="window.open('${ad.link}', '_blank'); event.stopPropagation();">View</button>
                 `;
 
-                listContainer.appendChild(listItem);
+                fragment.appendChild(listItem);
             });
+
+            listContainer.appendChild(fragment);
         }
 
         function filterAds() {
@@ -173,7 +185,6 @@
             const noResultsMessage = document.getElementById("no-results");
 
             if (titleFilter === "" && locationFilter === "") {
-                // Hide list when filters are cleared
                 listContainer.style.display = "none";
                 noResultsMessage.style.display = "none";
                 return;
@@ -185,6 +196,11 @@
             );
 
             displayAdverts(filteredAds);
+        }
+
+        function debouncedFilterAds() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(filterAds, 300);
         }
 
         window.onload = loadAdverts;
