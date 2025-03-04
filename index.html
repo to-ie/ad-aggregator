@@ -135,7 +135,7 @@
 </head>
 <body>
     <div class="header">
-        <span class="tooltip">What's this about?</span>
+        <span class="tooltip">What's this about?
             <span class="tooltip-text">
                 Find the best deals in Ireland, all in one place! Right now, we feature ads from Adverts.ie (updated once a week), with DoneDeal.ie, eBay.ie, and Facebook Marketplace coming soon. One search, all the ads. Simple!
             </span>
@@ -248,19 +248,7 @@
         }
 
         window.onload = loadAdverts;
-    async function loadAdverts() {
-        console.log("Fetching adverts...");
-        try {
-            const response = await fetch('results/adverts.json');
-            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-            advertsData = await response.json();
-            localStorage.setItem("advertsData", JSON.stringify(advertsData));
-            console.log("Adverts loaded successfully", advertsData);
-        } catch (error) {
-            console.error("Error loading adverts:", error);
-    }
-}
-
+    
     </script>
     
 
