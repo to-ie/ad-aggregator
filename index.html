@@ -95,9 +95,53 @@
             margin-top: 10px;
             display: none;
         }
+        .header {
+            position: fixed;
+            display: flex;
+            right: 30px;
+        }
+        .github-icon {
+            width: 24px;
+            height: 24px;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            text-decoration: none;
+            color: #1e1e1e60;
+            font-size: 14px;
+        }
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 300px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            position: absolute;
+            z-index: 1;
+            top: 20px;
+            right: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        
     </style>
 </head>
 <body>
+    <div class="header">
+        <span class="tooltip">What's this about?
+            <span class="tooltip-text">
+                Find the best deals in Ireland, all in one place! Right now, we feature ads from Adverts.ie (updated once a week), with DoneDeal.ie, eBay.ie, and Facebook Marketplace coming soon. One search, all the ads. Simple!
+            </span>
+        </span>
+    </div>
+    
     <div class="logo">
         <img src="logo.png">
     </div>
