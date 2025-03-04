@@ -175,7 +175,20 @@
             visibility: visible;
             opacity: 1;
         }
+        /* Mobile optimisation */
+        @media (max-width: 768px) {
+            .logo {
+                margin-top: 20px;
+            }
 
+            /* Center tooltip for better visibility on mobile */
+            .tooltip .tooltip-text {
+                width: 90%;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 40px;
+            }
+        }
     </style>
 </head>
 <body>
