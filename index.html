@@ -248,7 +248,21 @@
         }
 
         window.onload = loadAdverts;
+    async function loadAdverts() {
+        console.log("Fetching adverts...");
+        try {
+            const response = await fetch('results/adverts.json');
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+            advertsData = await response.json();
+            localStorage.setItem("advertsData", JSON.stringify(advertsData));
+            console.log("Adverts loaded successfully", advertsData);
+        } catch (error) {
+            console.error("Error loading adverts:", error);
+    }
+}
+
     </script>
+    
 
 </body>
 </html>
