@@ -130,7 +130,52 @@
         .tooltip:hover .tooltip-text {
             visibility: visible;
             opacity: 1;
-        
+        }
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .footer a {
+            text-decoration: none;
+            color: #1e1e1e60;
+            font-size: 14px;
+        }
+        .tooltip-footer {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            text-decoration: none;
+            color: #1e1e1e60;
+            font-size: 14px;
+        }
+        .tooltip-footer .tooltip-text {
+            visibility: hidden;
+            width: 300px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 20px;
+            right: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip-footer:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
     </style>
 </head>
 <body>
@@ -157,6 +202,20 @@
     <!-- Adverts List -->
     <ul class="ad-list" id="adverts-list"></ul>
     <p class="no-results" id="no-results">No matching results.</p>
+
+    <footer class="footer">
+        <!-- Question Mark Icon with Tooltip -->
+        <span class="tooltip-footer">
+            <img src="question-icon.png" alt="Help" class="footer-icon">
+            <span class="tooltip-text">Heads up! Images might take a moment to load. If you don't see any ads after entering your search, check that uBlock Origin or other script blockers aren't getting in the way. For anything else, shoot me an email at toie@pm.me.</span>
+        </span>
+
+        <!-- GitHub Icon -->
+        <a href="https://github.com/to-ie/ad-aggregator" target="_blank">
+            <img src="github-icon.png" alt="GitHub" class="footer-icon">
+        </a>
+    </footer>
+
 
     <script>
         let advertsData = [];
