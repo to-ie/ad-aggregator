@@ -25,22 +25,22 @@ This tool allows users to:
 
 ## 🔨 Installation & Setup
 
-### 1. Prerequisites
+### 1️⃣ Prerequisites
 
 Ensure Python 3 is installed on your system.
 
-### 2. Create a Virtual Environment
+### 2️⃣ Create a Virtual Environment
 
 ```bash
 python3 -m venv env
 source env/bin/activate  # On Windows, use 'env\\Scripts\\activate'
 ```
 
-### 3. Install Dependencies
+### 3️⃣ Install Dependencies
 ```
 pip install -r requirements.txt
 ```
-### 4. Run the Scraper
+### 4️⃣ Run the Scraper
 
 ```
 python scrapers/adverts_scraper.py
@@ -48,7 +48,7 @@ python scrapers/adverts_scraper.py
 
 This will generate a JSON file (results/adverts.json) containing the scraped data.
 
-### 5. Generate the Static Site
+### 5️⃣ Generate the Static Site
 ```
 python build.py
 ```
