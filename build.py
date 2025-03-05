@@ -17,7 +17,7 @@ except FileNotFoundError:
     print(f"❌ ERROR: {JSON_FILE} not found. Make sure it exists before running.")
     exit(1)
 
-# Generate static HTML with footer, filters, and correct ad visibility logic
+# Generate static HTML with footer, tooltips, optimized filtering, and correct ad visibility logic
 html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,10 +56,10 @@ html_content = """<!DOCTYPE html>
             list-style: none;
             padding: 0;
             margin: 0;
-            display: none;
+            display: none; /* Hide ads initially */
         }
         .ad-item {
-            display: flex;
+            display: none; /* Hide individual ads initially */
             align-items: center;
             padding: 8px;
             border-bottom: 1px solid #ddd;
@@ -115,42 +115,6 @@ html_content = """<!DOCTYPE html>
             margin-top: 10px;
             display: none;
         }
-        .header {
-            position: absolute;
-            display: flex;
-            right: 30px;
-        }
-        .github-icon {
-            width: 24px;
-            height: 24px;
-        }
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            text-decoration: none;
-            color: #1e1e1e60;
-            font-size: 14px;
-        }
-        .tooltip .tooltip-text {
-            visibility: hidden;
-            width: 300px;
-            background-color: black;
-            color: #fff;
-            text-align: center;
-            padding: 5px;
-            border-radius: 5px;
-            position: absolute;
-            z-index: 1;
-            top: 20px;
-            right: 0;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .tooltip:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-        }
         .footer {
             position: fixed;
             bottom: 10px;
@@ -165,29 +129,29 @@ html_content = """<!DOCTYPE html>
         }
         .footer a {
             text-decoration: none;
-            color: #1e1e1e60;
+            color: #1e1e1e;
             font-size: 14px;
         }
         .tooltip-footer {
             position: relative;
             display: inline-block;
             cursor: pointer;
-            text-decoration: none;
-            color: #1e1e1e60;
+            color: #1e1e1e;
             font-size: 14px;
         }
         .tooltip-footer .tooltip-text {
             visibility: hidden;
-            width: 300px;
+            width: 250px;
             background-color: black;
-            color: #fff;
+            color: white;
             text-align: center;
             padding: 5px;
             border-radius: 5px;
             position: absolute;
-            z-index: 1;
-            bottom: 20px;
-            right: 0;
+            z-index: 10;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -206,8 +170,8 @@ html_content = """<!DOCTYPE html>
 
     <!-- Filter Inputs -->
     <div class="filter-box">
-        <input type="text" id="titleFilter" placeholder="Search by title..." oninput="filterAds()">
-        <input type="text" id="locationFilter" placeholder="Search by location..." oninput="filterAds()">
+        <input type="text" id="titleFilter" placeholder="Search by title..." oninput="debounceFilterAds()">
+        <input type="text" id="locationFilter" placeholder="Search by location..." oninput="debounceFilterAds()">
     </div>
 
     <!-- Adverts List -->
@@ -232,20 +196,26 @@ html_content += """
     </ul>
     <p class="no-results" id="no-results">No matching results.</p>
 
-    <!-- Footer Section -->
+    <!-- Footer with Tooltips -->
     <footer class="footer">
         <span class="tooltip-footer">
             <a href="#" class="footer-link">What's this about?</a>
-            <span class="tooltip-text">Find the best deals in Ireland, all in one place! Right now, we feature ads from Adverts.ie (updated once a week), with DoneDeal.ie, eBay.ie, and Facebook Marketplace coming soon. One search, all the ads. Simple!</span>
+            <span class="tooltip-text">Find the best deals in Ireland, all in one place! We feature ads from Adverts.ie, with DoneDeal.ie, eBay.ie, and Facebook Marketplace coming soon.</span>
         </span>
 
         <span class="tooltip-footer">
             <a href="#" class="footer-link">Help!</a>
-            <span class="tooltip-text">Heads up! Images might take a moment to load. If you don't see any ads after entering your search, check that uBlock Origin or other script blockers aren't getting in the way. For anything else, shoot me an email at toie -at- pm -dot- me.</span>
+            <span class="tooltip-text">If you don't see any ads, check if script blockers are interfering. Email: toie -at- pm -dot- me.</span>
         </span>
     </footer>
 
     <script>
+        let debounceTimer;
+        function debounceFilterAds() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(filterAds, 200);
+        }
+
         function filterAds() {
             let titleFilter = document.getElementById("titleFilter").value.toLowerCase().trim();
             let locationFilter = document.getElementById("locationFilter").value.toLowerCase().trim();
@@ -265,14 +235,7 @@ html_content += """
                 }
             });
 
-            // Hide or show the list based on search input
-            if (titleFilter === "" && locationFilter === "") {
-                listContainer.style.display = "none";
-                adItems.forEach(ad => ad.style.display = "none");
-            } else {
-                listContainer.style.display = hasResults ? "block" : "none";
-            }
-
+            listContainer.style.display = hasResults ? "block" : "none";
             document.getElementById("no-results").style.display = hasResults ? "none" : "block";
         }
     </script>
@@ -280,7 +243,6 @@ html_content += """
 </html>
 """
 
-# Write to file
 with open(OUTPUT_FILE, "w", encoding="utf-8") as file:
     file.write(html_content)
 
