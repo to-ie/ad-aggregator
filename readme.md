@@ -52,7 +52,7 @@ This will generate a JSON file (results/adverts.json) containing the scraped dat
 ```
 python build.py
 ```
-This will create an index.html file in the docs directory, which you can open in your browser to browse and filter ads offline.
+This will create an index.html file in the docs directory, which you can open in your browser to browse and filter ads offline or publish statically.
 
 ## 🕒 Automation with Cron Jobs
 
