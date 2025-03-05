@@ -17,7 +17,7 @@ except FileNotFoundError:
     print(f"❌ ERROR: {JSON_FILE} not found. Make sure it exists before running.")
     exit(1)
 
-# Generate static HTML with CSS, filters, and ads preloaded
+# Generate static HTML with filters, CSS, and ads (hidden at start)
 html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +56,7 @@ html_content = """<!DOCTYPE html>
             list-style: none;
             padding: 0;
             margin: 0;
-            display: block; /* Ensure ads are always visible */
+            display: none; /* HIDE ADS AT START */
         }
         .ad-item {
             display: flex;
@@ -157,6 +157,7 @@ html_content += """
             let titleFilter = document.getElementById("titleFilter").value.toLowerCase().trim();
             let locationFilter = document.getElementById("locationFilter").value.toLowerCase().trim();
             let adItems = document.querySelectorAll(".ad-item");
+            let listContainer = document.getElementById("adverts-list");
             let hasResults = false;
 
             adItems.forEach(ad => {
@@ -171,6 +172,8 @@ html_content += """
                 }
             });
 
+            // Show/hide the advert list based on search results
+            listContainer.style.display = hasResults ? "block" : "none";
             document.getElementById("no-results").style.display = hasResults ? "none" : "block";
         }
     </script>
