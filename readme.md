@@ -1,4 +1,4 @@
-# Ad Aggregator
+# 🛒 Ad Aggregator
 
 Ad Aggregator is a marketplace listing aggregator for Ireland, designed to scrape and track advertisements from multiple platforms. Currently, it supports Adverts.ie, with future plans to include Facebook Marketplace, eBay, and DoneDeal.
 
@@ -10,7 +10,7 @@ This tool allows users to:
 - Automate scraping with cron jobs.
 - Generate a static HTML site to browse and filter ads offline.
 
-## Features
+## ✨ Features
 
 - **Adverts.ie Scraper** – Extracts key details from listings, including:
   - Image URL
@@ -23,7 +23,7 @@ This tool allows users to:
 - **Static Site Generation** – Create a static HTML page to browse and filter ads offline.
 - **Future Expansion** – Planned support for Facebook Marketplace, eBay, and DoneDeal.
 
-## Installation & Setup
+## 🔨 Installation & Setup
 
 ### 1. Prerequisites
 
@@ -54,19 +54,19 @@ python build.py
 ```
 This will create an index.html file in the docs directory, which you can open in your browser to browse and filter ads offline.
 
-## Automation with Cron Jobs
+## 🕒 Automation with Cron Jobs
 
 To automate daily scraping and site generation, add the following entries to your crontab:
-
+```
 0 0 * * * /path/to/env/bin/python /path/to/scrapers/adverts_scraper.py
 0 1 * * * /path/to/env/bin/python /path/to/build.py
-
+```
 Replace /path/to/ with the actual paths on your system.
 
-## Contributing
+## ✏️ Contributing
 
 Contributions are welcome! Please fork this repository and submit a pull request with your changes.
 
-## License
+## 📝 License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
