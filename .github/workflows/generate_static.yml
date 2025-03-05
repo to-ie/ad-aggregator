@@ -1,12 +1,10 @@
 name: Generate Static Site
 
 on:
+  push:  # Runs on every commit
   schedule:
     - cron: '0 2 * * *'  # Runs every day at 2 AM UTC
-  push:
-    paths:
-      - 'results/adverts.json'  # Runs when adverts.json changes
-  workflow_dispatch:  # Allows manual triggering
+  workflow_dispatch:  # Allows manual trigger from GitHub Actions UI
 
 permissions:
   contents: write
