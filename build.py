@@ -56,10 +56,10 @@ html_content = """<!DOCTYPE html>
             list-style: none;
             padding: 0;
             margin: 0;
-            display: none; /* Hide ads initially */
+            display: none;
         }
         .ad-item {
-            display: none; /* Hide individual ads initially */
+            display: flex;
             align-items: center;
             padding: 8px;
             border-bottom: 1px solid #ddd;
@@ -115,6 +115,42 @@ html_content = """<!DOCTYPE html>
             margin-top: 10px;
             display: none;
         }
+        .header {
+            position: absolute;
+            display: flex;
+            right: 30px;
+        }
+        .github-icon {
+            width: 24px;
+            height: 24px;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            text-decoration: none;
+            color: #1e1e1e60;
+            font-size: 14px;
+        }
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 300px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            position: absolute;
+            z-index: 1;
+            top: 20px;
+            right: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
         .footer {
             position: fixed;
             bottom: 10px;
@@ -131,6 +167,33 @@ html_content = """<!DOCTYPE html>
             text-decoration: none;
             color: #1e1e1e60;
             font-size: 14px;
+        }
+        .tooltip-footer {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            text-decoration: none;
+            color: #1e1e1e60;
+            font-size: 14px;
+        }
+        .tooltip-footer .tooltip-text {
+            visibility: hidden;
+            width: 300px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 20px;
+            right: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip-footer:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
 </head>
@@ -169,13 +232,16 @@ html_content += """
     </ul>
     <p class="no-results" id="no-results">No matching results.</p>
 
-    <!-- Footer -->
+    <!-- Footer Section -->
     <footer class="footer">
-        <span>
-            <a href="#">What's this about?</a>
+        <span class="tooltip-footer">
+            <a href="#" class="footer-link">What's this about?</a>
+            <span class="tooltip-text">Find the best deals in Ireland, all in one place! Right now, we feature ads from Adverts.ie (updated once a week), with DoneDeal.ie, eBay.ie, and Facebook Marketplace coming soon. One search, all the ads. Simple!</span>
         </span>
-        <span>
-            <a href="#">Help!</a>
+
+        <span class="tooltip-footer">
+            <a href="#" class="footer-link">Help!</a>
+            <span class="tooltip-text">Heads up! Images might take a moment to load. If you don't see any ads after entering your search, check that uBlock Origin or other script blockers aren't getting in the way. For anything else, shoot me an email at toie -at- pm -dot- me.</span>
         </span>
     </footer>
 
