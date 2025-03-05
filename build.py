@@ -198,13 +198,13 @@ html_content += """
     <!-- Footer with Tooltips -->
     <footer class="footer">
         <span class="tooltip-footer">
-            <a href="#">What's this about?</a>
-            <span class="tooltip-text">Find the best deals in Ireland, all in one place! It currently inclused ads from Adverts.ie, with DoneDeal.ie, eBay.ie, and Facebook Marketplace coming soon.</span>
+            <a href="#" class="footer-link">What's this about?</a>
+            <span class="tooltip-text">Find the best deals in Ireland, all in one place! Right now, we feature ads from Adverts.ie (updated once a week), with DoneDeal.ie, eBay.ie, and Facebook Marketplace coming soon. One search, all the ads. Simple!</span>
         </span>
 
         <span class="tooltip-footer">
-            <a href="#">Help!</a>
-            <span class="tooltip-text">Heads up! Thumbnails take a little while to load. If no ads show, check that script blockers (ie: uBlok Origin) are interfering. Email: toie -at- pm -dot- me.</span>
+            <a href="#" class="footer-link">Help!</a>
+            <span class="tooltip-text">Heads up! Images might take a moment to load. If you don't see any ads after entering your search, check that uBlock Origin or other script blockers aren't getting in the way. For anything else, shoot me an email at toie -at- pm -dot- me.</span>
         </span>
     </footer>
 
