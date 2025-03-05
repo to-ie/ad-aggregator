@@ -56,10 +56,10 @@ html_content = """<!DOCTYPE html>
             list-style: none;
             padding: 0;
             margin: 0;
-            display: none; /* Hide ads initially */
+            display: none; /* HIDE ADS INITIALLY */
         }
         .ad-item {
-            display: flex;
+            display: none; /* HIDE INDIVIDUAL ADS INITIALLY */
             align-items: center;
             padding: 8px;
             border-bottom: 1px solid #ddd;
@@ -172,9 +172,10 @@ html_content += """
                 }
             });
 
-            // If no search text, hide all ads again
+            // If no search input, hide everything again
             if (titleFilter === "" && locationFilter === "") {
                 listContainer.style.display = "none";
+                adItems.forEach(ad => ad.style.display = "none");
             } else {
                 listContainer.style.display = hasResults ? "block" : "none";
             }
