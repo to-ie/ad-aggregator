@@ -204,7 +204,7 @@ html_content += """
 
         <span class="tooltip-footer">
             <a href="#">Help!</a>
-            <span class="tooltip-text">Heads up! Thumbnails take a little while to load. If no ads show, check if script blockers are interfering. Email: toie -at- pm -dot- me.</span>
+            <span class="tooltip-text">Heads up! Thumbnails take a little while to load. If no ads show, check that script blockers (ie: uBlok Origin) are interfering. Email: toie -at- pm -dot- me.</span>
         </span>
     </footer>
 
