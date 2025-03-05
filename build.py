@@ -150,8 +150,7 @@ html_content = """<!DOCTYPE html>
             position: absolute;
             z-index: 10;
             bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 0;
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -200,12 +199,12 @@ html_content += """
     <footer class="footer">
         <span class="tooltip-footer">
             <a href="#">What's this about?</a>
-            <span class="tooltip-text">Find the best deals in Ireland, all in one place! Ads from Adverts.ie, with DoneDeal.ie, eBay.ie, and Facebook Marketplace coming soon.</span>
+            <span class="tooltip-text">Find the best deals in Ireland, all in one place! It currently inclused ads from Adverts.ie, with DoneDeal.ie, eBay.ie, and Facebook Marketplace coming soon.</span>
         </span>
 
         <span class="tooltip-footer">
             <a href="#">Help!</a>
-            <span class="tooltip-text">If no ads show, check if script blockers are interfering. Email: toie -at- pm -dot- me.</span>
+            <span class="tooltip-text">Heads up! Thumbnails take a little while to load. If no ads show, check if script blockers are interfering. Email: toie -at- pm -dot- me.</span>
         </span>
     </footer>
 
