@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          persist-credentials: false  # Disable default GitHub Actions credentials
+          persist-credentials: false  # Required when using a Personal Access Token
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -24,4 +24,17 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install requests  # Not needed but useful for future modifications
+        run: pip install requests  # Not needed, but useful for future improvements
+
+      - name: Generate static site
+        run: python generate_static_site.py
+
+      - name: Commit and push changes
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}  # Use your GitHub Personal Access Token
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add docs/index.html
+          git commit -m "Update static site with latest adverts" || echo "No changes to commit"
+          git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git main
