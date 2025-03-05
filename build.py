@@ -17,7 +17,7 @@ except FileNotFoundError:
     print(f"❌ ERROR: {JSON_FILE} not found. Make sure it exists before running.")
     exit(1)
 
-# Generate static HTML with full styling and preloaded ads
+# Generate static HTML with filters and search
 html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +36,21 @@ html_content = """<!DOCTYPE html>
         }
         .logo {
             text-align: center;
+        }
+        .filter-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .filter-box input {
+            flex: 1;
+            padding: 5px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .filter-box input:focus-visible {
+            outline: 1px solid #cccccc;
         }
         .ad-list {
             list-style: none;
@@ -92,22 +107,12 @@ html_content = """<!DOCTYPE html>
         .view-button:hover {
             background-color: #0056b3;
         }
-        .footer {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 8px;
-            border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-        .footer a {
-            text-decoration: none;
-            color: #1e1e1e60;
+        .no-results {
+            text-align: center;
+            color: gray;
             font-size: 14px;
+            margin-top: 10px;
+            display: none;
         }
     </style>
 </head>
@@ -118,13 +123,20 @@ html_content = """<!DOCTYPE html>
 
     <h2 style="text-align: center;">Latest Adverts</h2>
 
-    <ul class="ad-list">
+    <!-- Filter Inputs -->
+    <div class="filter-box">
+        <input type="text" id="titleFilter" placeholder="Search by title..." oninput="filterAds()">
+        <input type="text" id="locationFilter" placeholder="Search by location..." oninput="filterAds()">
+    </div>
+
+    <!-- Adverts List -->
+    <ul class="ad-list" id="adverts-list">
 """
 
 # Add adverts from JSON
 for ad in adverts:
     html_content += f"""
-        <li class="ad-item" onclick="window.open('{ad['link']}', '_blank')">
+        <li class="ad-item" data-title="{ad['title'].lower()}" data-location="{ad['location'].lower()}" onclick="window.open('{ad['link']}', '_blank')">
             <img src="{ad['image']}" alt="{ad['title']}">
             <div class="ad-details">
                 <p class="ad-title">{ad['title']}</p>
@@ -137,17 +149,30 @@ for ad in adverts:
 
 html_content += """
     </ul>
+    <p class="no-results" id="no-results">No matching results.</p>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <span>
-            <a href="#">What's this about?</a>
-        </span>
-        <span>
-            <a href="#">Help!</a>
-        </span>
-    </footer>
+    <script>
+        function filterAds() {
+            let titleFilter = document.getElementById("titleFilter").value.toLowerCase().trim();
+            let locationFilter = document.getElementById("locationFilter").value.toLowerCase().trim();
+            let adItems = document.querySelectorAll(".ad-item");
+            let hasResults = false;
 
+            adItems.forEach(ad => {
+                let title = ad.getAttribute("data-title");
+                let location = ad.getAttribute("data-location");
+
+                if (title.includes(titleFilter) && location.includes(locationFilter)) {
+                    ad.style.display = "flex";
+                    hasResults = true;
+                } else {
+                    ad.style.display = "none";
+                }
+            });
+
+            document.getElementById("no-results").style.display = hasResults ? "none" : "block";
+        }
+    </script>
 </body>
 </html>
 """
