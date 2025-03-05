@@ -17,7 +17,7 @@ except FileNotFoundError:
     print(f"❌ ERROR: {JSON_FILE} not found. Make sure it exists before running.")
     exit(1)
 
-# Generate static HTML with correct filter logic
+# Generate static HTML with footer, filters, and correct ad visibility logic
 html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,10 +56,10 @@ html_content = """<!DOCTYPE html>
             list-style: none;
             padding: 0;
             margin: 0;
-            display: none; /* HIDE ADS INITIALLY */
+            display: none; /* Hide ads initially */
         }
         .ad-item {
-            display: none; /* HIDE INDIVIDUAL ADS INITIALLY */
+            display: none; /* Hide individual ads initially */
             align-items: center;
             padding: 8px;
             border-bottom: 1px solid #ddd;
@@ -115,6 +115,23 @@ html_content = """<!DOCTYPE html>
             margin-top: 10px;
             display: none;
         }
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .footer a {
+            text-decoration: none;
+            color: #1e1e1e60;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>    
@@ -152,6 +169,16 @@ html_content += """
     </ul>
     <p class="no-results" id="no-results">No matching results.</p>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <span>
+            <a href="#">What's this about?</a>
+        </span>
+        <span>
+            <a href="#">Help!</a>
+        </span>
+    </footer>
+
     <script>
         function filterAds() {
             let titleFilter = document.getElementById("titleFilter").value.toLowerCase().trim();
@@ -172,7 +199,7 @@ html_content += """
                 }
             });
 
-            // If no search input, hide everything again
+            // Hide or show the list based on search input
             if (titleFilter === "" && locationFilter === "") {
                 listContainer.style.display = "none";
                 adItems.forEach(ad => ad.style.display = "none");
