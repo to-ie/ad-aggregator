@@ -195,6 +195,20 @@ for ad in adverts:
 html_content += """
     </ul>
     <p class="no-results" id="no-results">No matching results.</p>
+    
+    <!-- Footer with Tooltips -->
+    <footer class="footer">
+        <span class="tooltip-footer">
+            <a href="#">What's this about?</a>
+            <span class="tooltip-text">Find the best deals in Ireland, all in one place! Ads from Adverts.ie, with DoneDeal.ie, eBay.ie, and Facebook Marketplace coming soon.</span>
+        </span>
+
+        <span class="tooltip-footer">
+            <a href="#">Help!</a>
+            <span class="tooltip-text">If no ads show, check if script blockers are interfering. Email: toie -at- pm -dot- me.</span>
+        </span>
+    </footer>
+
 
     <script>
         let debounceTimer;
