@@ -5,8 +5,13 @@ on:
     - cron: '0 2 * * *'  # Runs every day at 2 AM UTC
   push:
     paths:
-      - 'results/adverts.json'  # Runs when this file changes
-  workflow_dispatch:  # Allows manual trigger from GitHub Actions UI
+      - 'results/adverts.json'  # Runs when adverts.json changes
+  workflow_dispatch:  # Allows manual triggering
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -16,7 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          persist-credentials: false  # Required when using a Personal Access Token
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -24,17 +29,30 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install requests  # Not needed, but useful for future improvements
+        run: pip install requests  
+
+      - name: Ensure docs directory exists
+        run: mkdir -p docs
 
       - name: Generate static site
         run: python generate_static_site.py
 
-      - name: Commit and push changes
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}  # Use your GitHub Personal Access Token
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add docs/index.html
-          git commit -m "Update static site with latest adverts" || echo "No changes to commit"
-          git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git main
+      - name: Disable Jekyll
+        run: touch docs/.nojekyll
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

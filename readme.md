@@ -106,7 +106,3 @@ This project is open-source under the MIT License.
 ## 🤝 Contributing
 
 PRs and suggestions are welcome! Feel free to fork and submit a pull request. 🚀
-
-
-
-test
