@@ -17,7 +17,7 @@ except FileNotFoundError:
     print(f"❌ ERROR: {JSON_FILE} not found. Make sure it exists before running.")
     exit(1)
 
-# Generate static HTML with filters and search
+# Generate static HTML with CSS, filters, and ads preloaded
 html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +56,7 @@ html_content = """<!DOCTYPE html>
             list-style: none;
             padding: 0;
             margin: 0;
+            display: block; /* Ensure ads are always visible */
         }
         .ad-item {
             display: flex;
