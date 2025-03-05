@@ -25,7 +25,7 @@ This tool allows users to:
 
 ## Installation & Setup
 
- 1. Prerequisites
+### 1. Prerequisites
 
 Ensure Python 3 is installed on your system.
 
@@ -54,7 +54,7 @@ python build.py
 ```
 This will create an index.html file in the docs directory, which you can open in your browser to browse and filter ads offline.
 
-##Automation with Cron Jobs
+## Automation with Cron Jobs
 
 To automate daily scraping and site generation, add the following entries to your crontab:
 
