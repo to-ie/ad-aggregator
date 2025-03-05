@@ -17,7 +17,7 @@ except FileNotFoundError:
     print(f"❌ ERROR: {JSON_FILE} not found. Make sure it exists before running.")
     exit(1)
 
-# Generate static HTML with filters, CSS, and ads (hidden at start)
+# Generate static HTML with correct filter logic
 html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +56,7 @@ html_content = """<!DOCTYPE html>
             list-style: none;
             padding: 0;
             margin: 0;
-            display: none; /* HIDE ADS AT START */
+            display: none; /* Hide ads initially */
         }
         .ad-item {
             display: flex;
@@ -172,8 +172,13 @@ html_content += """
                 }
             });
 
-            // Show/hide the advert list based on search results
-            listContainer.style.display = hasResults ? "block" : "none";
+            // If no search text, hide all ads again
+            if (titleFilter === "" && locationFilter === "") {
+                listContainer.style.display = "none";
+            } else {
+                listContainer.style.display = hasResults ? "block" : "none";
+            }
+
             document.getElementById("no-results").style.display = hasResults ? "none" : "block";
         }
     </script>
