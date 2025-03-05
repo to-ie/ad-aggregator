@@ -17,7 +17,7 @@ except FileNotFoundError:
     print(f"❌ ERROR: {JSON_FILE} not found. Make sure it exists before running.")
     exit(1)
 
-# Generate static HTML with filters, tooltips, debounced filtering, and correct ad visibility logic
+# Generate static HTML
 html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +59,7 @@ html_content = """<!DOCTYPE html>
             display: none; /* Hide ads initially */
         }
         .ad-item {
-            display: none; /* Hide individual ads initially */
+            display: none; /* Hide each ad initially */
             align-items: center;
             padding: 8px;
             border-bottom: 1px solid #ddd;
@@ -196,19 +196,6 @@ html_content += """
     </ul>
     <p class="no-results" id="no-results">No matching results.</p>
 
-    <!-- Footer with Tooltips -->
-    <footer class="footer">
-        <span class="tooltip-footer">
-            <a href="#">What's this about?</a>
-            <span class="tooltip-text">Find the best deals in Ireland, all in one place! Ads from Adverts.ie, with DoneDeal.ie, eBay.ie, and Facebook Marketplace coming soon.</span>
-        </span>
-
-        <span class="tooltip-footer">
-            <a href="#">Help!</a>
-            <span class="tooltip-text">If no ads show, check if script blockers are interfering. Email: toie -at- pm -dot- me.</span>
-        </span>
-    </footer>
-
     <script>
         let debounceTimer;
         function debounceFilterAds() {
@@ -235,7 +222,13 @@ html_content += """
                 }
             });
 
-            listContainer.style.display = hasResults ? "block" : "none";
+            // Hide the entire list if search is cleared
+            if (titleFilter === "" && locationFilter === "") {
+                listContainer.style.display = "none";
+            } else {
+                listContainer.style.display = hasResults ? "block" : "none";
+            }
+
             document.getElementById("no-results").style.display = hasResults ? "none" : "block";
         }
     </script>
