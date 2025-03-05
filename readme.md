@@ -8,7 +8,7 @@ This tool allows users to:
 - Identify new and removed ads.
 - Store data in a structured format (JSON).
 - Automate scraping with cron jobs.
-- Generate a static HTML site to browse and filter ads offline.
+- Display ads in a simple, filterable list.
 
 ## ✨ Features
 
@@ -20,7 +20,6 @@ This tool allows users to:
   - Ad Link
 - **Data Storage** – Saves results in a structured JSON file.
 - **Automation** – Set up scheduled daily scrapes using cron jobs.
-- **Static Site Generation** – Create a static HTML page to browse and filter ads offline.
 - **Future Expansion** – Planned support for Facebook Marketplace, eBay, and DoneDeal.
 
 ## 🔨 Installation & Setup
@@ -48,18 +47,11 @@ python scrapers/adverts_scraper.py
 
 This will generate a JSON file (results/adverts.json) containing the scraped data.
 
-### 5️⃣ Generate the Static Site
-```
-python build.py
-```
-This will create an index.html file in the docs directory, which you can open in your browser to browse and filter ads offline or publish statically.
-
 ## 🕒 Automation with Cron Jobs
 
-To automate daily scraping and site generation, add the following entries to your crontab:
+To automate daily scraping add the following entries to your crontab:
 ```
 0 0 * * * /path/to/env/bin/python /path/to/scrapers/adverts_scraper.py
-0 1 * * * /path/to/env/bin/python /path/to/build.py
 ```
 Replace /path/to/ with the actual paths on your system.
 
