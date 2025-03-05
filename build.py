@@ -17,7 +17,7 @@ except FileNotFoundError:
     print(f"❌ ERROR: {JSON_FILE} not found. Make sure it exists before running.")
     exit(1)
 
-# Generate static HTML with footer, tooltips, optimized filtering, and correct ad visibility logic
+# Generate static HTML with filters, tooltips, debounced filtering, and correct ad visibility logic
 html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -199,13 +199,13 @@ html_content += """
     <!-- Footer with Tooltips -->
     <footer class="footer">
         <span class="tooltip-footer">
-            <a href="#" class="footer-link">What's this about?</a>
-            <span class="tooltip-text">Find the best deals in Ireland, all in one place! We feature ads from Adverts.ie, with DoneDeal.ie, eBay.ie, and Facebook Marketplace coming soon.</span>
+            <a href="#">What's this about?</a>
+            <span class="tooltip-text">Find the best deals in Ireland, all in one place! Ads from Adverts.ie, with DoneDeal.ie, eBay.ie, and Facebook Marketplace coming soon.</span>
         </span>
 
         <span class="tooltip-footer">
-            <a href="#" class="footer-link">Help!</a>
-            <span class="tooltip-text">If you don't see any ads, check if script blockers are interfering. Email: toie -at- pm -dot- me.</span>
+            <a href="#">Help!</a>
+            <span class="tooltip-text">If no ads show, check if script blockers are interfering. Email: toie -at- pm -dot- me.</span>
         </span>
     </footer>
 
