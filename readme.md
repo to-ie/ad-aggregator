@@ -55,6 +55,12 @@ To automate daily scraping add the following entries to your crontab:
 ```
 Replace /path/to/ with the actual paths on your system.
 
+
+## Run locally:
+```
+python3 -m http.server 8000
+```
+
 ## ✏️ Contributing
 
 Contributions are welcome! Please fork this repository and submit a pull request with your changes.
